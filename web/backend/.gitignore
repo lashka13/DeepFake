@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+
+# Virtual Environment
+venv/
+.env
+.env.local
+
+# Logs & Debugging
+logs/
+*.log
+
+# Byte-compiled / packaged
+*.egg-info/
+dist/
+build/
+
+# Cache
+.cache/
+.ipynb_checkpoints/
+
+# Pytest / Testing
+htmlcov/
+.coverage
+.tox/
+noxfile
+.nox/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# VSCode / JetBrains
+.vscode/
+.idea/
+
+# Jupyter Notebooks
+*.ipynb_checkpoints
+
+# FastAPI Specific
+instance/
