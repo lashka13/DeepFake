@@ -30,11 +30,11 @@
         Сравнить лица
       </button>
 
-      <div v-if="result" class="result" :class="{ match: (isMatch > 70000) }">
+      <div v-if="result" class="result" :class="{ match: isMatch }">
         <div class="result-content">
-          <i :class="['fas', (isMatch > 70000) ? 'fa-check-circle' : 'fa-times-circle']"></i>
+          <i :class="['fas', isMatch ? 'fa-check-circle' : 'fa-times-circle']"></i>
           <p class="result-message">{{ resultMessage }}</p>
-          <p class="result-confidence">Уровень схожести: {{ isMatch / 1000 }}%</p>
+          <p class="result-confidence">Уровень схожести: {{ similarity / 1000 }}%</p>
         </div>
       </div>
     </div>
@@ -47,7 +47,8 @@ import { ref } from 'vue'
 const image1Preview = ref<string>('')
 const image2Preview = ref<string>('')
 const result = ref(false)
-const isMatch = ref(0)
+const isMatch = ref(false)
+const similarity = ref(0)
 const resultMessage = ref('')
 const image1Input = ref<HTMLInputElement | null>(null)
 const image2Input = ref<HTMLInputElement | null>(null)
@@ -67,7 +68,6 @@ const handleImage2Upload = (event: Event) => {
 }
 
 const compareImages = async () => {
-  result.value = true
   const formData = new FormData()
 
   // Get the file objects from the file input refs
@@ -85,9 +85,30 @@ const compareImages = async () => {
   })
 
   if (response.ok) {
+    result.value = true
     const data = await response.json()
-    isMatch.value = data.similarity // Temporary random result
-    resultMessage.value = (isMatch.value > 70000) ? "Это один человек" : "Это разные люди"
+    similarity.value = data.similarity
+    isMatch.value = (data.similarity > 70000)// Temporary random result
+
+    if (similarity.value < 20000) {
+      resultMessage.value = "Ну точно разные люди!"
+    }
+
+    if (similarity.value >= 20000 && similarity.value < 50000) {
+      resultMessage.value = "Очень навряд ли, что это один и тот же человек"
+    }
+
+    if (similarity.value >= 50000 && similarity.value < 70000) {
+      resultMessage.value = "Определённое сходство есть, но навряд ли это один и тот же человек"
+    }
+
+    if (similarity.value >= 70000 && similarity.value < 99000) {
+      resultMessage.value = "Кажется, это действительно один человек!"
+    }
+    
+    if (similarity.value >= 99000) {
+      resultMessage.value = "Да они как две капли воды!"
+    }
   }
 }
 </script>
