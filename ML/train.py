@@ -8,7 +8,7 @@ from huggingface_hub import login
 from data_processing import train_dataloader, val_dataloader
 
 device = "cpu"
-epochs = 15
+epochs = 20
 save_path = "data/weights/"
 
 def train(model, optimizer, criterion, epochs, train_dataloader, test_dataloader):
@@ -82,4 +82,4 @@ if __name__ == "__main__":
 
     train_on_gpu = torch.cuda.is_available()
 
-    train(model, optimizer, criterion, 30, train_dataloader, val_dataloader)
+    train(model, optimizer, criterion, epochs, train_dataloader, val_dataloader)
