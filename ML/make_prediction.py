@@ -22,7 +22,7 @@ if __name__ == "__main__":
     device = "cpu"
     test_path = "test.csv"
 
-    login(token="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")
+    login(token="Введите ваш токен")
     model = timm.create_model("hf_hub:gaunernst/vit_tiny_patch8_112.arcface_ms1mv3", pretrained=True)
     state_dict = torch.load("data/weights/model_epoch_20.pth", map_location="cpu")
     model.load_state_dict(state_dict)
