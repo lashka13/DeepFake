@@ -9,7 +9,7 @@ import sys
 from dotenv import load_dotenv
 
 
-LOCAL_WEIGHTS_PATH = "core/weights/model_final_weights_20.pth.pth"
+LOCAL_WEIGHTS_PATH = "core/weights/model_final_weights_20.pth"
 
 
 def download(repo_id, path, HF_TOKEN=None):
