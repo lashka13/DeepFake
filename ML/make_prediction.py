@@ -14,7 +14,7 @@ import shutil
 import sys
 
 # Путь для сохранения локальных весов
-LOCAL_WEIGHTS_PATH = "data/weights/model_final_weights_2.0.pth"
+LOCAL_WEIGHTS_PATH = "data/weights/model_weights_epoch_3.pth"
 
 # Helper function to download Hugging Face repo
 def download(repo_id, path, HF_TOKEN=None):
