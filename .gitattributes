@@ -1,0 +1,2 @@
+web/backend/core/weights/model_final_weights_20.pth filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
